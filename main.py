@@ -1,5 +1,6 @@
 import tkinter as tk
-from tkinter.messagebox import showerror
+from tkinter.messagebox import showinfo
+from PIL import Image, ImageTk
 import pyperclip
 from language_selector import create_language_selector
 from text_fields import create_text_fields
@@ -7,15 +8,36 @@ from buttons import create_buttons
 from translator import translator
 from config import get_auth_key
 
-
 root = tk.Tk()
-root.title("GUI Translator")
-root.geometry("715x470")
+root.title("GUI Translator - Deepl")
+
+screen_width = root.winfo_screenwidth()
+screen_height = root.winfo_screenheight()
+window_width = 1065
+window_height = 650
+
+x = (screen_width - window_width) // 2
+y = (screen_height - window_height) // 2
+
+root.geometry(f'{window_width}x{window_height}+{x}+{y}')
+root.resizable(False, False)
 
 auth_key = get_auth_key() # replace with your actual auth key
 
-source_var, target_var = create_language_selector(root)
-input_box, output_box = create_text_fields(root)
+default_font = ('Open Sans', 12)
+default_font_bold = ('Open Sans Semibold', 12)
+
+frame_logo = tk.Frame(root, padx=10, pady=15)
+frame_logo.grid(row=0, column=0, columnspan=4, sticky='n')
+
+logo = Image.open('logo.png')
+logo = ImageTk.PhotoImage(logo)
+logo_label = tk.Label(frame_logo, image=logo)
+logo_label.grid(row=0, column=0)
+
+
+source_var, target_var = create_language_selector(root, default_font_bold)
+input_box, output_box = create_text_fields(root, default_font, default_font_bold)
 
 def swap_languages():
     # Get the current values of the source and target languages
@@ -52,14 +74,17 @@ def paste_from_clipboard():
     input_box.insert("end", clipboard_content)
 
 def translate_text():
-    input_text = input_box.get("1.0", "end-1c")
-    if input_text.strip():  # check if input text is not empty
-        translated_text = translator(auth_key, source_var.get(), target_var.get(), input_text)
-        output_box.config(state="normal")
-        output_box.delete("1.0", "end")
-        output_box.insert("end", translated_text)
-        output_box.config(state="disabled")
+    if source_var.get() != target_var.get():
+        input_text = input_box.get("1.0", "end-1c")
+        if input_text.strip():  # check if input text is not empty
+            translated_text = translator(auth_key, source_var.get(), target_var.get(), input_text)
+            output_box.config(state="normal")
+            output_box.delete("1.0", "end")
+            output_box.insert("end", str(translated_text))
+            output_box.config(state="disabled")
+    else:
+        showinfo('Attention', 'You must select different languages')
 
-create_buttons(root, swap_languages, paste_from_clipboard, copy_to_clipboard, clear_text, translate_text)
+create_buttons(root, default_font_bold, swap_languages, paste_from_clipboard, copy_to_clipboard, clear_text, translate_text)
 
 root.mainloop()

@@ -1,53 +1,24 @@
 import tkinter as tk
+from tkinter import ttk
 
-def create_language_selector(root):
+def create_language_selector(root, default_font_bold):
     lang_frame = tk.Frame(root)
-    lang_frame.grid(row=1, column=0, columnspan=4, padx=10, pady=10)
+    lang_frame.grid(row=1, column=0, columnspan=4, padx=10, pady=5)
 
-    source_label = tk.Label(lang_frame, text="Source Language")
-    source_label.grid(row=0, column=0, sticky="nsew", padx=10, pady=10)
-
-    source_var = tk.StringVar(root)
+    source_var = tk.StringVar(lang_frame)
     source_var.set("ES")
 
     languages = [
-        ("BG", "Bulgarian"),
-        ("CS", "Czech"),
-        ("DA", "Danish"),
-        ("DE", "German"),
-        ("EL", "Greek"),
-        ("EN-US", "English"),
-        ("EN-GB", "English"),
-        ("ES", "Spanish"),
-        ("ET", "Estonian"),
-        ("FI", "Finnish"),
-        ("FR", "French"),
-        ("HU", "Hungarian"),
-        ("IT", "Italian"),
-        ("JA", "Japanese"),
-        ("LT", "Lithuanian"),
-        ("LV", "Latvian"),
-        ("NL", "Dutch"),
-        ("PL", "Polish"),
-        ("PT", "Portuguese"),
-        ("RO", "Romanian"),
-        ("RU", "Russian"),
-        ("SK", "Slovak"),
-        ("SL", "Slovenian"),
-        ("SV", "Swedish"),
-        ("ZH", "Chinese")
+        "BG", "CS", "DA", "DE", "EL", "EN-US", "EN-GB", "ES", "ET", "FI", "FR", "HU", "IT", "JA", "LT", "LV", "NL", "PL", "PT", "RO", "RU", "SK", "SL", "SV", "ZH"
     ]
 
-    source_menu = tk.OptionMenu(lang_frame, source_var, *[code for code, name in languages])
-    source_menu.grid(row=1, column=0, sticky="nsew", padx=10, pady=10)
+    source_menu = ttk.Combobox(lang_frame, state="readonly", width=6, textvariable=source_var, values=languages, font=default_font_bold)
+    source_menu.grid(row=0, column=1, sticky="nsew", padx=10, pady=10)
 
-    target_label = tk.Label(lang_frame, text="Target Language")
-    target_label.grid(row=0, column=3, sticky="nsew", padx=10, pady=10)
-
-    target_var = tk.StringVar(root)
+    target_var = tk.StringVar(lang_frame)
     target_var.set("EN-US")
 
-    target_menu = tk.OptionMenu(lang_frame, target_var, *[code for code, name in languages])
-    target_menu.grid(row=1, column=3, sticky="nsew", padx=10, pady=10)
+    target_menu = ttk.Combobox(lang_frame, state="readonly", width=6, textvariable=target_var, values=languages, font=default_font_bold)
+    target_menu.grid(row=0, column=3, sticky="nsew", padx=10, pady=10)
 
     return source_var, target_var
