@@ -7,6 +7,9 @@ from text_fields import create_text_fields
 from buttons import create_buttons
 from translator import translator
 from config import get_auth_key
+import tkinter.font as font
+
+auth_key = get_auth_key() # replace with your actual auth key
 
 root = tk.Tk()
 root.title("GUI Translator - Deepl")
@@ -22,10 +25,15 @@ y = (screen_height - window_height) // 2
 root.geometry(f'{window_width}x{window_height}+{x}+{y}')
 root.resizable(False, False)
 
-auth_key = get_auth_key() # replace with your actual auth key
+try:
+    default_font = font.Font(family="Open Sans", size=12)
+    default_font_bold = font.Font(family="Open Sans Semibold", size=12)
+except tk.TclError:
+    # If Open Sans is not available, fallback to Arial
+    default_font = font.Font(family="Arial", size=12)
+    default_font_bold = font.Font(family="Arial", size=12)
 
-default_font = ('Open Sans', 12)
-default_font_bold = ('Open Sans Semibold', 12)
+#default_font = ('Open Sans', 12)
 
 frame_logo = tk.Frame(root, padx=10, pady=15)
 frame_logo.grid(row=0, column=0, columnspan=4, sticky='n')
