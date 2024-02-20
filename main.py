@@ -35,12 +35,12 @@ ROOT.resizable(False, False)
 AVAILABLE_FONTS = font.families()
 
 # Check if 'Open Sans' and 'Open Sans Semibold' are available, otherwise fall back to 'Arial'
-DEFAULT_FONT_FAMILY = "Open Sans" if "Open Sans" in AVAILABLE_FONTS else "Arial"
-DEFAULT_FONT_BOLD_FAMILY = "Open Sans" if "Open Sans" in AVAILABLE_FONTS else "Arial"
+DEFAULT_FONT_FAMILY = "Open Sans" if "Open Sans" in AVAILABLE_FONTS else "Yu Gothic UI"
+DEFAULT_FONT_BOLD_FAMILY = "Open Sans" if "Open Sans" in AVAILABLE_FONTS else "Yu Gothic UI"
 
 # Set the default fonts
 default_font = font.Font(family=DEFAULT_FONT_FAMILY, size=12)
-default_font_bold = font.Font(family=DEFAULT_FONT_BOLD_FAMILY, size=12, weight='bold')
+default_font_bold = font.Font(family=DEFAULT_FONT_BOLD_FAMILY, size=11, weight='bold')
 
 frame_logo = tk.Frame(ROOT, padx=10, pady=15)
 frame_logo.grid(row=0, column=0, columnspan=4, sticky='n')
