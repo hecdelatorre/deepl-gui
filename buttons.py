@@ -1,6 +1,24 @@
+"""
+This module is used to create buttons for a GUI application.
+It uses the tkinter library for the GUI.
+"""
+
 import tkinter as tk
 
 def create_buttons(root, default_font_bold, swap_languages, paste_from_clipboard, copy_to_clipboard, clear_text, translate_text):
+    """
+    Create buttons for the GUI application.
+
+    Parameters:
+    root (tk.Tk): The root window of the application.
+    default_font_bold (tkinter.font.Font): The font to be used for the buttons.
+    swap_languages (function): Function to swap source and target languages.
+    paste_from_clipboard (function): Function to paste text from clipboard into the input text box.
+    copy_to_clipboard (function): Function to copy translated text to the clipboard.
+    clear_text (function): Function to clear the input and output text boxes.
+    translate_text (function): Function to translate the text in the input box and display it in the output box.
+    """
+
     button_frame = tk.Frame(root)
     button_frame.grid(row=3, column=0, sticky='n', columnspan=4, padx=5, pady=5)
 
