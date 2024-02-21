@@ -13,6 +13,7 @@ from text_fields import create_text_fields
 from buttons import create_buttons
 from translator import translator
 from config import get_auth_key
+from base64_images import get_logo_image
 
 # Get the authentication key
 AUTH_KEY = get_auth_key()  # replace with your actual auth key
@@ -45,7 +46,8 @@ default_font_bold = font.Font(family=DEFAULT_FONT_BOLD_FAMILY, size=11, weight='
 frame_logo = tk.Frame(ROOT, padx=10, pady=15)
 frame_logo.grid(row=0, column=0, columnspan=4, sticky='n')
 
-logo = Image.open('logo.png')
+image_path = get_logo_image()
+logo = Image.open(image_path)
 logo = ImageTk.PhotoImage(logo)
 logo_label = tk.Label(frame_logo, image=logo)
 logo_label.grid(row=0, column=0)
