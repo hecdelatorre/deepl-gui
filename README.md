@@ -82,6 +82,20 @@ To set up the development environment and install the dependencies listed in the
   pip install -r requirements.txt
   ```
 
+## Create executable
+
+- Install pyinstaller pyinstallerpyinstallerbash
+  
+  ```bash
+  pip install pyinstaller
+  ```
+
+- Create executable
+  
+  ```bash
+  pyinstaller --onefile --hidden-import='PIL._tkinter_finder' --name tdeepl main.py
+  ```
+
 ## License
 
 This project is licensed under the GNU General Public License v3.0. See the [LICENSE](LICENSE) file for details.
