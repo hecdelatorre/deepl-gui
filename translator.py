@@ -16,7 +16,10 @@ def translator(auth_key, source_var, target_var, text):
 
     try:
         if source_var == "EN-US" or source_var == "EN-GB": 
-            source_var = "EN"
+            source_var = "EN" 
+        elif source_var == "PT-PT" or source_var == "PT-BR":
+            source_var = "PT"
+
         translator = Translator(auth_key)
         result = translator.translate_text(text, source_lang=source_var, target_lang=target_var)
         return result

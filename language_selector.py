@@ -9,7 +9,7 @@ def create_language_selector(root, default_font_bold):
     source_var.set("ES")
 
     languages = [
-        "BG", "CS", "DA", "DE", "EL", "EN-US", "EN-GB", "ES", "ET", "FI", "FR", "HU", "IT", "JA", "LT", "LV", "NL", "PL", "PT", "RO", "RU", "SK", "SL", "SV", "ZH"
+        "BG", "CS", "DA", "DE", "EL", "EN-US", "EN-GB", "ES", "ET", "FI", "FR", "HU", "IT", "JA", "KO", "LT", "LV", "NL", "PL", "PT-PT", "PT-BR", "RO", "RU", "SK", "SL", "SV", "TR", "UK", "ZH"
     ]
 
     source_menu = ttk.Combobox(lang_frame, state="readonly", width=6, textvariable=source_var, values=languages, font=default_font_bold)
